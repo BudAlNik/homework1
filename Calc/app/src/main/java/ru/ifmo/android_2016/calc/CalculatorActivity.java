@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
+import java.util.Locale;
+
 import ru.ifmo.android_2016.calc.ParseException;
 
 /**
@@ -40,7 +43,7 @@ public final class CalculatorActivity extends Activity {
         outState.putString("expr", expr);
         outState.putString("expr_on_screen", expr_on_screen);
         Log.d("MyTag", expr_on_screen);
-        if (num != Double.NaN) {
+        if (!Double.isNaN(num)) {
             outState.putDouble("num", num);
         }
     }
@@ -51,7 +54,7 @@ public final class CalculatorActivity extends Activity {
         if (savedInstanceState == null) {
             return;
         }
-        double num = savedInstanceState.getDouble("num", Double.NaN);
+        num = savedInstanceState.getDouble("num", Double.NaN);
         if (!Double.isNaN(num)) {
             result.setText(String.format("%.6f", num));
         } else {
